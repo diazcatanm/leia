@@ -1,0 +1,49 @@
+# ======================
+# macOS
+# ======================
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+__MACOSX/
+
+# Archivos de volúmenes externos
+.Spotlight-V100
+.Trashes
+.fseventsd
+.TemporaryItems
+.apdisk
+
+# ======================
+# Archivos de Prolog
+# ======================
+# Archivos de backup creados por algunos editores de Prolog
+*.bak
+*~
+
+# Archivos de compilación intermedia
+*.qlf   # quick-load files (SWI-Prolog precompiled files)
+*.o     # object files (GNU Prolog)
+*.a     # static libraries
+*.so    # shared objects (GNU Prolog)
+
+# ======================
+# Editores comunes
+# ======================
+# VSCode
+.vscode/
+# IntelliJ / PyCharm / otros IDE JetBrains
+.idea/
+# Emacs
+*~
+\#*\#
+# Vim
+*.swp
+*.swo
+
+# ======================
+# Archivos generales de sistema o usuario
+# ======================
+*.log
+*.tmp
+*.lock
