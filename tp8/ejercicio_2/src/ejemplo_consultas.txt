@@ -1,0 +1,102 @@
+======================================================
+EJEMPLOS DE CONSULTAS - EJERCICIO 2
+======================================================
+
+Antes de realizar cualquier consulta, ejecutar:
+
+?- consult('C:/Users/hp/Documents/leia/tp8/ejercicio_2/src/agente_laboral.pl').
+?- cargar_ejemplo.
+
+------------------------------------------------------
+1) Listar todas las personas aptas
+------------------------------------------------------
+?- apto(Persona, Rol).
+
+Resultados esperados:
+
+Persona = ana, Rol = programador ;
+Persona = ana, Rol = tester ;
+Persona = lucas, Rol = analista_datos ;
+Persona = sofia, Rol = disenador ;
+Persona = marcos, Rol = programador ;
+false.
+
+------------------------------------------------------
+2) Consultar si una persona es apta para un rol específico
+------------------------------------------------------
+?- apto(ana, programador).
+
+Resultado:
+
+true.
+
+?- apto(marcos, analista_datos).
+
+Resultado:
+
+false.
+
+------------------------------------------------------
+3) Listar las personas disponibles en una ciudad para un rol
+------------------------------------------------------
+?- disponible(Persona, programador, buenos_aires).
+
+Resultados esperados:
+
+Persona = ana ;
+false.
+
+?- disponible(Persona, disenador, buenos_aires).
+
+Resultados esperados:
+
+Persona = sofia ;
+false.
+
+------------------------------------------------------
+4) Listar todos los roles que puede ocupar una persona
+------------------------------------------------------
+?- roles_posibles(ana, Rol).
+
+Resultado:
+
+Rol = programador ;
+Rol = tester ;
+false.
+
+?- roles_posibles(lucas, Rol).
+
+Resultado:
+
+Rol = analista_datos ;
+false.
+
+------------------------------------------------------
+5) Ejecutar test automático
+------------------------------------------------------
+?- test.
+
+---- TEST DE PROLOG ----
+Ingrese rol:  % (dependerá del input del usuario)
+...
+Personas aptas (Persona - Rol):
+- ana: programador
+- ana: tester
+- lucas: analista_datos
+- sofia: disenador
+- marcos: programador
+Disponibilidades: (Persona - Rol - Ciudad)
+- ana: programador en buenos_aires
+- ana: tester en buenos_aires
+- lucas: analista_datos en la_plata
+- sofia: disenador en buenos_aires
+- marcos: programador en rosario
+---- FIN TEST ----
+
+------------------------------------------------------
+6) Iniciar menú interactivo
+------------------------------------------------------
+?- start_menu.
+
+
+Se abrirá el menú y podrás operar todo desde ahí.

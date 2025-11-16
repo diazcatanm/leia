@@ -1,0 +1,74 @@
+===========================================================
+                 REAS - Agente Laboral en Prolog
+===========================================================
+
+-----------------------------------------------------------
+R - Requerimiento
+-----------------------------------------------------------
+Desarrollar un agente laboral en Prolog que determine qué 
+roles laborales puede ocupar un postulante en función de sus 
+preferencias y habilidades, y consultar también si está 
+disponible en una ciudad específica. El sistema debe 
+permitir realizar consultas mediante un menú interactivo.
+
+-----------------------------------------------------------
+E - Entradas
+-----------------------------------------------------------
+1. Base de conocimiento dinámica compuesta por:
+   - vive(Persona, Ciudad)
+   - prefiere(Persona, Rol)
+   - habilidad(Persona, Habilidad)
+   - relacion(Rol, Habilidad)
+
+2. Hechos cargados automáticamente mediante el predicado:
+   - cargar_ejemplo/0
+
+3. Hechos o consultas ingresadas por el usuario durante la 
+   ejecución a través de predicados o menú.
+
+-----------------------------------------------------------
+A - Algoritmo (Procesamiento lógico)
+-----------------------------------------------------------
+1. Limpiar la base de conocimiento previa utilizando:
+   - retractall/1
+
+2. Insertar nuevos hechos utilizando:
+   - assertz/1
+
+3. Determinar si una persona es apta para un rol según:
+   apto(Persona, Rol) :-
+       prefiere(Persona, Rol),
+       habilidad(Persona, Habilidad),
+       relacion(Rol, Habilidad).
+
+4. Determinar disponibilidad geográfica mediante:
+   disponible(Persona, Rol, Ciudad) :-
+       apto(Persona, Rol),
+       vive(Persona, Ciudad).
+
+5. Obtener los roles posibles de una persona:
+   roles_posibles(Persona, Rol) :-
+       apto(Persona, Rol).
+
+6. Mostrar resultados mediante predicados de listado o menú:
+   - listar_todos_apto
+   - listar_disponibles_por_rol
+   - listar_disponibles_por_rol_y_ciudad
+   - listar_todas_disponibilidades
+   - start_menu
+
+-----------------------------------------------------------
+S - Salidas
+-----------------------------------------------------------
+1. Información mostrada por consola indicando:
+   -  Personas aptas
+   -  Listado de todas las disponibilidades
+   -  Listado de las personas disponibles por rol
+   -  Listado de las personas disponibles por rol y ciudad
+   -  Muestra de roles posibles de una persona
+   -  Verificacion si una persona es apta para un rol
+
+2. Resultados presentados en formato de listado con nombres 
+   de personas, roles y ciudades según corresponda.
+
+===========================================================
