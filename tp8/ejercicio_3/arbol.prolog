@@ -1,14 +1,15 @@
 % HECHOS:
 % --------------------------------
 mujer(mary).
-mujer(clara).
-mujer(ashlynn).
-mujer(auravei).
-hombre(william).
-hombre(tomas).
 hombre(herbert).
-hombre(simon).
 hombre(lionel).
+% Estos se pueden deducir:
+%mujer(clara).
+%mujer(ashlynn).
+%mujer(auravei).
+%hombre(william).
+%hombre(tomas).
+%hombre(simon).
 padre(tomas, herbert).
 padre(tomas, simon).
 madre(auravei, herbert).
@@ -24,14 +25,24 @@ madre(ashlynn, lionel).
 % REGLAS:
 % --------------------------------
 
+% A es progenitor de B si es su madre o su padre.
 progenitor(A, B) :- padre(A, B).
 progenitor(A, B) :- madre(A, B).
+
+% A es mujer si es madre de alguien, y hombre si es padre de alguien.
+mujer(A) :- madre(A, B).
+hombre(A) :- padre(A, B).
+
+% Relación hije/hijo/hija.
+hije(A, B) :- progenitor(B, A).
+hija(A, B) :- hije(A, B), mujer(A).
+hijo(A, B) :- hije(A, B), hombre(A).
 
 % A es antepasado de B si es progenitor...
 antepasado(A, B) :- progenitor(A, B).
 % O si existe un antepasado C intermedio.
-% antepasado(A, B) :- antepasado(A, C), antepasado(C, B).
-% Aunque parece que eso da error por la recursión en el primer término...
+%antepasado(A, B) :- antepasado(A, C), antepasado(C, B).
+% Aunque eso da error por la recursión en el primer término...
 % Otra manera de expresarlo es que A sea progenitor de un C que es antepasado de B.
 antepasado(A, B) :- progenitor(A, C), antepasado(C, B).
 
@@ -46,4 +57,8 @@ abuele(A, B) :- progenitor(A, C), progenitor(C, B).
 abuela(A, B) :- abuele(A, B), mujer(A).
 abuelo(A, B) :- abuele(A, B), hombre(A).
 
+% tie = tio/tia
+tie(A, B) :- progenitor(C, B), hermano(A, C).
+tio(A, B) :- tie(A, B), hombre(A).
+tia(A, B) :- tie(A, B), mujer(A).
 
