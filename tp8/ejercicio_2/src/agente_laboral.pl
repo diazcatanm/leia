@@ -1,29 +1,21 @@
 % ------------------------------------------------------------------
-% Agente Laboral — Prolog
-% Practica 8 - Ejercicio 2
-% ------------------------------------------------------------------
-% REAS:
-% R: Determinar qué roles puede ocupar un postulante según sus
-%    preferencias y habilidades. Consultar aptitud, disponibilidad y roles.
-% E: Base de conocimiento cargada en tiempo de ejecución.
-% A: Respuestas por consola mediante consultas o menú interactivo.
-% S: Entradas del usuario vía predicados y hechos dinámicos.
-% ------------------------------------------------------------------
-:- dynamic vive/2, prefiere/2, habilidad/2, relacion/2. % Permite modificar hechos en tiempo de ejecución
+:- dynamic se_traslada/2, prefiere/2, habilidad/2, relacion/2. % Permite modificar hechos en tiempo de ejecución
 
 % ---------------------------
 % Cargar datos de ejemplo
 % ---------------------------
 cargar_ejemplo :-
-    retractall(vive(_, _)),
+    retractall(se_traslada(_, _)),
     retractall(prefiere(_, _)),
     retractall(habilidad(_, _)),
     retractall(relacion(_, _)),
 
-    assertz(vive(ana, buenos_aires)),
-    assertz(vive(lucas, la_plata)),
-    assertz(vive(sofia, buenos_aires)),
-    assertz(vive(marcos, rosario)),
+    assertz(se_traslada(ana, buenos_aires)),
+    assertz(se_traslada(lucas, la_plata)),
+    assertz(se_traslada(lucas, buenos_aires)),
+    assertz(se_traslada(sofia, buenos_aires)),
+    assertz(se_traslada(marcos, rosario)),
+     assertz(se_traslada(marcos, santa_fe)),
 
     assertz(prefiere(ana, programador)),
     assertz(prefiere(ana, tester)),
@@ -55,7 +47,7 @@ apto(Persona, Rol) :-
 
 disponible(Persona, Rol, Ciudad) :-
     apto(Persona, Rol),
-    vive(Persona, Ciudad).
+    se_traslada(Persona, Ciudad).
 
 roles_posibles(Persona, Rol) :-
     apto(Persona, Rol).

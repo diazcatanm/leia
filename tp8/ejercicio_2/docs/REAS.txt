@@ -15,7 +15,7 @@ permitir realizar consultas mediante un menú interactivo.
 E - Entradas
 -----------------------------------------------------------
 1. Base de conocimiento dinámica compuesta por:
-   - vive(Persona, Ciudad)
+   - se_translada(Persona, Ciudad)
    - prefiere(Persona, Rol)
    - habilidad(Persona, Habilidad)
    - relacion(Rol, Habilidad)
@@ -44,7 +44,7 @@ A - Algoritmo (Procesamiento lógico)
 4. Determinar disponibilidad geográfica mediante:
    disponible(Persona, Rol, Ciudad) :-
        apto(Persona, Rol),
-       vive(Persona, Ciudad).
+       se_traslada(Persona, Ciudad).
 
 5. Obtener los roles posibles de una persona:
    roles_posibles(Persona, Rol) :-
