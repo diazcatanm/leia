@@ -58,7 +58,7 @@ abuela(A, B) :- abuele(A, B), mujer(A).
 abuelo(A, B) :- abuele(A, B), hombre(A).
 
 % tie = tio/tia
-tie(A, B) :- progenitor(C, B), hermano(A, C).
+tie(A, B) :- progenitor(C, B), hermane(A, C).
 tio(A, B) :- tie(A, B), hombre(A).
 tia(A, B) :- tie(A, B), mujer(A).
 
