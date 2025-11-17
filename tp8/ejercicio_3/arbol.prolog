@@ -36,8 +36,8 @@ antepasado(A, B) :- progenitor(A, B).
 antepasado(A, B) :- progenitor(A, C), antepasado(C, B).
 
 % hermane = hermano/a
-% PROBLEMA: cada persona es su propio hermane...
-hermane(A, B) :- progenitor(C, A), progenitor(C, B).
+% El \= se cumple si A es distinto de B. Esto evita que cada persona sea su propio hermane.
+hermane(A, B) :- progenitor(C, A), progenitor(C, B), A \= B.
 hermano(A, B) :- hermane(A, B), hombre(A).
 hermana(A, B) :- hermane(A, B), mujer(A).
 
