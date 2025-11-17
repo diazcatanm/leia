@@ -3,72 +3,58 @@
 ===========================================================
 
 -----------------------------------------------------------
-R - Requerimiento
+R - Rendimiento (Performance measure)
 -----------------------------------------------------------
-Desarrollar un agente laboral en Prolog que determine qué 
-roles laborales puede ocupar un postulante en función de sus 
-preferencias y habilidades, y consultar también si está 
-disponible en una ciudad específica. El sistema debe 
-permitir realizar consultas mediante un menú interactivo.
+El agente debe asignar correctamente los roles laborales 
+que una persona puede desempeñar, basándose en preferencias 
+y habilidades, y determinar si está disponible para trabajar 
+en una ciudad según su capacidad de traslado. El desempeño 
+se considera óptimo si:
 
------------------------------------------------------------
-E - Entradas
------------------------------------------------------------
-1. Base de conocimiento dinámica compuesta por:
-   - se_translada(Persona, Ciudad)
-   - prefiere(Persona, Rol)
-   - habilidad(Persona, Habilidad)
-   - relacion(Rol, Habilidad)
-
-2. Hechos cargados automáticamente mediante el predicado:
-   - cargar_ejemplo/0
-
-3. Hechos o consultas ingresadas por el usuario durante la 
-   ejecución a través de predicados o menú.
+✓ No asigna roles sin relación de habilidad.
+✓ Permite múltiples roles válidos por persona.
+✓ Permite múltiples ciudades posibles por persona.
+✓ Responde consultas correctas y sin contradicciones.
+✓ Actualiza y consulta la base de conocimiento dinámicamente.
 
 -----------------------------------------------------------
-A - Algoritmo (Procesamiento lógico)
+E - Entorno (Environment)
 -----------------------------------------------------------
-1. Limpiar la base de conocimiento previa utilizando:
-   - retractall/1
+El entorno está formado por:
 
-2. Insertar nuevos hechos utilizando:
-   - assertz/1
+• Personas postulantes.
+• Roles laborales posibles.
+• Habilidades requeridas para cada rol.
+• Ciudades a las que una persona está dispuesta a trasladarse.
+• Una base de conocimiento lógica en Prolog, dinámica y ampliable.
 
-3. Determinar si una persona es apta para un rol según:
-   apto(Persona, Rol) :-
-       prefiere(Persona, Rol),
-       habilidad(Persona, Habilidad),
-       relacion(Rol, Habilidad).
-
-4. Determinar disponibilidad geográfica mediante:
-   disponible(Persona, Rol, Ciudad) :-
-       apto(Persona, Rol),
-       se_traslada(Persona, Ciudad).
-
-5. Obtener los roles posibles de una persona:
-   roles_posibles(Persona, Rol) :-
-       apto(Persona, Rol).
-
-6. Mostrar resultados mediante predicados de listado o menú:
-   - listar_todos_apto
-   - listar_disponibles_por_rol
-   - listar_disponibles_por_rol_y_ciudad
-   - listar_todas_disponibilidades
-   - start_menu
+Entorno simbólico, discreto, parcialmente observable y estático 
+durante cada consulta.
 
 -----------------------------------------------------------
-S - Salidas
+A - Actuadores (Actuators)
 -----------------------------------------------------------
-1. Información mostrada por consola indicando:
-   -  Personas aptas
-   -  Listado de todas las disponibilidades
-   -  Listado de las personas disponibles por rol
-   -  Listado de las personas disponibles por rol y ciudad
-   -  Muestra de roles posibles de una persona
-   -  Verificacion si una persona es apta para un rol
+El agente actúa sobre la base de conocimiento mediante:
 
-2. Resultados presentados en formato de listado con nombres 
-   de personas, roles y ciudades según corresponda.
+• assertz/1  para agregar hechos.
+• retractall/1 para limpiar hechos previos.
+• Ejecución de consultas lógicas a través de predicados como:
+     - apto(Persona, Rol)
+     - disponible(Persona, Rol, Ciudad)
+     - roles_posibles(Persona, Rol)
+• Ejecución de funcionalidades mediante menú interactivo.
+
+-----------------------------------------------------------
+S - Sensores (Sensors)
+-----------------------------------------------------------
+El agente percibe información únicamente a través de hechos 
+ingresados por el usuario o cargados automáticamente:
+
+• prefiere(Persona, Rol)
+• habilidad(Persona, Habilidad)
+• relacion(Rol, Habilidad)
+• se_translada(Persona, Ciudad)
+
+Además, percibe entradas a través de selección de opciones del menú.
 
 ===========================================================
