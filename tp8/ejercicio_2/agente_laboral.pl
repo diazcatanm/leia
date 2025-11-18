@@ -38,7 +38,9 @@ cargar_ejemplo :-
     assertz(relacion(tester, testing)).
 
 % ---------------------------
-% Reglas principales (de razonamiento) / Cuerpo :- Cabeza lo cual significa si La cabeza es verdadera si el cuerpo es verdadero.
+% Reglas principales (de razonamiento)
+% Cuerpo :- Cabeza
+% lo cual significa que si la cabeza es verdadera, entonces el cuerpo es verdadero.
 % ---------------------------
 apto(Persona, Rol) :-
     prefiere(Persona, Rol),
@@ -48,9 +50,6 @@ apto(Persona, Rol) :-
 disponible(Persona, Rol, Ciudad) :-
     apto(Persona, Rol),
     se_traslada(Persona, Ciudad).
-
-roles_posibles(Persona, Rol) :-
-    apto(Persona, Rol).
 
 % ---------------------------
 % Test y visualización
@@ -125,7 +124,7 @@ ejecutar(4) :- listar_disponibles_por_rol, !.
 ejecutar(5) :- listar_disponibles_por_rol_y_ciudad, !.
 ejecutar(6) :-
     write('Ingrese persona: '), read(P),
-    findall(R, roles_posibles(P,R), Roles),
+    findall(R, apto(P,R), Roles),
     format('Roles posibles de ~w: ~w~n', [P,Roles]), !.
 ejecutar(7) :-
     write('Persona: '), read(P),
